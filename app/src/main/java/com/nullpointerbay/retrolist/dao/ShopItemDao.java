@@ -3,8 +3,6 @@ package com.nullpointerbay.retrolist.dao;
 
 import com.nullpointerbay.retrolist.model.ShopItem;
 
-import java.util.List;
-
 public interface ShopItemDao {
-    List<ShopItem> getItems();
+    void getItems(OnFinishedListener<ShopItem> listener);
 }

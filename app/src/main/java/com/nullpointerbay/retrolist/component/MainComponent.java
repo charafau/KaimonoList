@@ -2,7 +2,6 @@ package com.nullpointerbay.retrolist.component;
 
 import com.nullpointerbay.retrolist.ActivityScope;
 import com.nullpointerbay.retrolist.activity.MainActivity;
-import com.nullpointerbay.retrolist.dao.ShopItemDao;
 import com.nullpointerbay.retrolist.module.MainModule;
 import com.nullpointerbay.retrolist.presenter.MainPresenter;
 
@@ -18,6 +17,5 @@ public interface MainComponent {
 
     MainPresenter getMainPresenter();
 
-    ShopItemDao getShopItemDao();
 
 }

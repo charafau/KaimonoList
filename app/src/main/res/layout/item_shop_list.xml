@@ -1,6 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/activity_horizontal_margin"
+    android:paddingLeft="@dimen/item_padding"
+    android:paddingTop="@dimen/activity_horizontal_margin">
+
+    <RelativeLayout
+        android:id="@+id/layout_initial"
+        android:layout_width="@dimen/icon_size"
+        android:layout_height="@dimen/icon_size"
+        android:background="@color/initial_color">
+
+        <TextView
+            android:id="@+id/item_initial"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="M"
+            android:textSize="@dimen/initial_size"
+            android:textStyle="bold" />
+
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/txt_shopping_item_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/item_margin"
+        android:layout_toRightOf="@id/layout_initial"
+        android:text="Marshmallow"
+        android:textColor="@color/text_color"
+        android:textSize="@dimen/item_name_size" />
 
 </RelativeLayout>

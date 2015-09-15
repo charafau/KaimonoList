@@ -5,6 +5,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 
+import com.annimon.stream.Collectors;
+import com.annimon.stream.Stream;
 import com.nullpointerbay.retrolist.R;
 import com.nullpointerbay.retrolist.adapter.ShopListItemAdapter;
 import com.nullpointerbay.retrolist.component.AppComponent;
@@ -40,7 +42,17 @@ public class MainActivity extends BaseActivity implements MainView {
 
     private void initializeAdapter() {
         this.adapter = new ShopListItemAdapter(this);
+        final List<ShopItem> shopItems = Stream.ofRange(1, 100)
+                .map(value -> new ShopItem("first"))
+                .collect(Collectors.toList());
+        adapter.addAll(shopItems);
+        listViewItems.setAdapter(adapter);
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        presenter.onResume();
     }
 
     @Override
@@ -81,6 +93,9 @@ public class MainActivity extends BaseActivity implements MainView {
 
     @Override
     public void setItems(List<ShopItem> items) {
-
+        if (adapter != null) {
+            adapter.clear();
+            adapter.addAll(items);
+        }
     }
 }

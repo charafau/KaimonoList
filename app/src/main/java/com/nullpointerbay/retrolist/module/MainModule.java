@@ -1,7 +1,6 @@
 package com.nullpointerbay.retrolist.module;
 
 import com.nullpointerbay.retrolist.dao.ShopItemDao;
-import com.nullpointerbay.retrolist.dao.ShopItemDaoImpl;
 import com.nullpointerbay.retrolist.presenter.MainPresenter;
 import com.nullpointerbay.retrolist.presenter.MainPresenterImpl;
 import com.nullpointerbay.retrolist.view.MainView;
@@ -25,11 +24,6 @@ public class MainModule {
     @Provides
     public MainPresenter providePresenter(MainView mainView, ShopItemDao shopItemDao) {
         return new MainPresenterImpl(mainView, shopItemDao);
-    }
-
-    @Provides
-    public ShopItemDao provideShopItemDao() {
-        return new ShopItemDaoImpl();
     }
 
 }
