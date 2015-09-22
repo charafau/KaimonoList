@@ -17,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="M"
+            android:lines="1"
             android:textSize="@dimen/initial_size"
             android:textStyle="bold" />
 
@@ -31,7 +31,6 @@
         android:layout_centerVertical="true"
         android:layout_marginLeft="@dimen/item_margin"
         android:layout_toRightOf="@id/layout_initial"
-        android:text="Marshmallow"
         android:textColor="@color/text_color"
         android:textSize="@dimen/item_name_size" />
 

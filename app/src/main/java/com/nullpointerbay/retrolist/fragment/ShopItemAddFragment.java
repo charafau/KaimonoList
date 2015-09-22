@@ -22,7 +22,6 @@ import javax.inject.Inject;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import io.realm.Realm;
 
 public class ShopItemAddFragment extends BaseFragment implements ShopItemAddView {
 
@@ -50,8 +49,6 @@ public class ShopItemAddFragment extends BaseFragment implements ShopItemAddView
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_shop_item_add, container, false);
         ButterKnife.bind(this, view);
-        final Realm instance = Realm.getInstance(getActivity());
-
         return view;
     }
 
