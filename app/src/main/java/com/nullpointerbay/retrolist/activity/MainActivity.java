@@ -5,13 +5,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 
-import com.annimon.stream.Collectors;
-import com.annimon.stream.Stream;
+import com.nullpointerbay.retrolist.MainApp;
 import com.nullpointerbay.retrolist.R;
 import com.nullpointerbay.retrolist.adapter.ShopListItemAdapter;
 import com.nullpointerbay.retrolist.component.AppComponent;
 import com.nullpointerbay.retrolist.component.DaggerMainComponent;
 import com.nullpointerbay.retrolist.model.ShopItem;
+import com.nullpointerbay.retrolist.module.DaoModule;
 import com.nullpointerbay.retrolist.module.MainModule;
 import com.nullpointerbay.retrolist.presenter.MainPresenter;
 import com.nullpointerbay.retrolist.view.MainView;
@@ -22,6 +22,7 @@ import javax.inject.Inject;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity implements MainView {
 
@@ -42,10 +43,6 @@ public class MainActivity extends BaseActivity implements MainView {
 
     private void initializeAdapter() {
         this.adapter = new ShopListItemAdapter(this);
-        final List<ShopItem> shopItems = Stream.ofRange(1, 100)
-                .map(value -> new ShopItem("first"))
-                .collect(Collectors.toList());
-        adapter.addAll(shopItems);
         listViewItems.setAdapter(adapter);
     }
 
@@ -56,10 +53,11 @@ public class MainActivity extends BaseActivity implements MainView {
     }
 
     @Override
-    protected void setupComponent(AppComponent component) {
+    protected void setupComponent(AppComponent component, MainApp mainApp) {
         DaggerMainComponent.builder()
                 .appComponent(component)
                 .mainModule(new MainModule(this))
+                .daoModule(new DaoModule(this))
                 .build()
                 .inject(this);
     }
@@ -91,11 +89,22 @@ public class MainActivity extends BaseActivity implements MainView {
 
     }
 
+    //create iterface for add view and call it in presenter
+    @OnClick(R.id.fab)
+    void onClickFabButton() {
+        presenter.startAddView();
+    }
+
     @Override
     public void setItems(List<ShopItem> items) {
         if (adapter != null) {
             adapter.clear();
             adapter.addAll(items);
         }
+    }
+
+    @Override
+    public void startAddView() {
+        ShopItemAddActivity.start(this);
     }
 }

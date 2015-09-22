@@ -5,4 +5,6 @@ import com.nullpointerbay.retrolist.model.ShopItem;
 
 public interface ShopItemDao {
     void getItems(OnFinishedListener<ShopItem> listener);
+
+    void addItem(String name);
 }

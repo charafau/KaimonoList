@@ -24,6 +24,11 @@ public class MainPresenterImpl implements MainPresenter, OnFinishedListener<Shop
     }
 
     @Override
+    public void startAddView() {
+        mainView.startAddView();
+    }
+
+    @Override
     public void onFinished(List<ShopItem> items) {
         mainView.setItems(items);
         mainView.hideProgress();

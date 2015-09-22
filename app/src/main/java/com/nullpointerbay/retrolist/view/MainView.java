@@ -12,4 +12,6 @@ public interface MainView {
     void hideProgress();
 
     void setItems(List<ShopItem> items);
+
+    void startAddView();
 }

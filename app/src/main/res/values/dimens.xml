@@ -7,4 +7,5 @@
     <dimen name="item_name_size">14sp</dimen>
     <dimen name="item_margin">8dp</dimen>
     <dimen name="item_padding">16dp</dimen>
+    <dimen name="form_label_size">16sp</dimen>
 </resources>
