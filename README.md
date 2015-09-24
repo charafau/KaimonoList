@@ -11,3 +11,5 @@ Used libries:
 * retrolambda
 * streams
 * realm
+
+I'm also thinking about adding synchronization with other devices thorugh custom API later.
