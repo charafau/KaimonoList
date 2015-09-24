@@ -104,6 +104,12 @@ public class MainActivity extends BaseActivity implements MainView {
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        presenter.onPause();
+    }
+
+    @Override
     public void startAddView() {
         ShopItemAddActivity.start(this);
     }

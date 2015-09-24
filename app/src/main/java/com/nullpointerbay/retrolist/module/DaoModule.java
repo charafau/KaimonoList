@@ -21,7 +21,7 @@ public class DaoModule {
 
     @Provides
     public ShopItemDao provideShopItemDao() {
-        return new ShopItemDaoImpl(Realm.getInstance(context));
+        return new ShopItemDaoImpl(Realm.getInstance(context), context);
     }
 
 }
