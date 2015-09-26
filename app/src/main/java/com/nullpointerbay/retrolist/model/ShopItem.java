@@ -1,35 +1,31 @@
 package com.nullpointerbay.retrolist.model;
 
 
+import java.util.Date;
+
 public class ShopItem {
 
-    private String id;
+    private final String id;
 
-    private String name;
+    private final String name;
 
+    private final Date boughtAt;
 
-    public ShopItem() {
-
-    }
-
-    public ShopItem(String id, String name) {
+    public ShopItem(String id, String name, Date boughtAt) {
         this.id = id;
         this.name = name;
+        this.boughtAt = boughtAt;
     }
 
     public String getId() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public Date getBoughtAt() {
+        return boughtAt;
     }
 }

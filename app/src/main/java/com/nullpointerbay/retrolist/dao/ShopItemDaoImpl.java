@@ -7,6 +7,7 @@ import com.nullpointerbay.retrolist.model.realm.RealmShopItem;
 import com.nullpointerbay.retrolist.rx.RealmObservable;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import io.realm.Realm;
@@ -37,7 +38,7 @@ public class ShopItemDaoImpl implements ShopItemDao {
     }
 
     private ShopItem shopItemFromRealm(RealmShopItem realmItem) {
-        return new ShopItem(realmItem.getId(), realmItem.getName());
+        return new ShopItem(realmItem.getId(), realmItem.getName(), new Date());
     }
 
     @Override
