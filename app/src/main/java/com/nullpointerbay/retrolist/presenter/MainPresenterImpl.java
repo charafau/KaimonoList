@@ -1,11 +1,8 @@
 package com.nullpointerbay.retrolist.presenter;
 
-import com.nullpointerbay.retrolist.dao.OnFinishedListener;
 import com.nullpointerbay.retrolist.dao.ShopItemDao;
-import com.nullpointerbay.retrolist.model.ShopItem;
+import com.nullpointerbay.retrolist.dao.ShopItemDaoImpl;
 import com.nullpointerbay.retrolist.view.MainView;
-
-import java.util.List;
 
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
@@ -13,7 +10,7 @@ import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
 
 
-public class MainPresenterImpl implements MainPresenter, OnFinishedListener<ShopItem> {
+public class MainPresenterImpl implements MainPresenter {
     private final MainView mainView;
     private final ShopItemDao shopItemDao;
 
@@ -48,9 +45,4 @@ public class MainPresenterImpl implements MainPresenter, OnFinishedListener<Shop
         mainView.startAddView();
     }
 
-    @Override
-    public void onFinished(List<ShopItem> items) {
-        mainView.setItems(items);
-        mainView.hideProgress();
-    }
 }

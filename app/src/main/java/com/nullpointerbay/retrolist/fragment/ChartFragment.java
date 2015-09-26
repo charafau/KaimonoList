@@ -4,6 +4,7 @@ package com.nullpointerbay.retrolist.fragment;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,17 +19,30 @@ import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.nullpointerbay.retrolist.R;
 import com.nullpointerbay.retrolist.component.AppComponent;
+import com.nullpointerbay.retrolist.component.DaggerChartComponent;
+import com.nullpointerbay.retrolist.model.Category;
+import com.nullpointerbay.retrolist.module.ChartModule;
+import com.nullpointerbay.retrolist.module.DaoModule;
+import com.nullpointerbay.retrolist.presenter.ChartPresenter;
+import com.nullpointerbay.retrolist.view.ChartView;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
-public class ChartFragment extends BaseFragment {
+public class ChartFragment extends BaseFragment implements ChartView {
 
+    public static final String TAG = ChartFragment.class.getSimpleName();
     @Bind(R.id.chart_billings)
     PieChart chartBillings;
+
+    @Inject
+    ChartPresenter presenter;
 
     @Nullable
     @Override
@@ -105,12 +119,47 @@ public class ChartFragment extends BaseFragment {
 
     @Override
     protected void setupComponent(AppComponent component) {
-
+        DaggerChartComponent.builder()
+                .appComponent(component)
+                .chartModule(new ChartModule(this))
+                .daoModule(new DaoModule(getActivity()))
+                .build()
+                .inject(this);
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.unbind(this);
+    }
+
+    @OnClick(R.id.fab)
+    void onClickFabButton() {
+
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        presenter.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        presenter.onPause();
+    }
+
+    @Override
+    public void setCategories(List<Category> categories) {
+        for (Category c : categories) {
+            Log.d(TAG, "" + c.getName());
+        }
+    }
+
+    @Override
+    public void startAddView() {
+
     }
 }

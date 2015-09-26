@@ -2,7 +2,9 @@ package com.nullpointerbay.retrolist.dao;
 
 import android.content.Context;
 
+import com.nullpointerbay.retrolist.model.Category;
 import com.nullpointerbay.retrolist.model.ShopItem;
+import com.nullpointerbay.retrolist.model.realm.RealmCategory;
 import com.nullpointerbay.retrolist.model.realm.RealmShopItem;
 import com.nullpointerbay.retrolist.rx.RealmObservable;
 
@@ -24,7 +26,6 @@ public class ShopItemDaoImpl implements ShopItemDao {
         this.context = context;
     }
 
-    @Override
     public Observable<List<ShopItem>> listItems() {
         return RealmObservable.results(context,
                 realmDb -> realmDb.where(RealmShopItem.class).findAll())
@@ -41,12 +42,24 @@ public class ShopItemDaoImpl implements ShopItemDao {
         return new ShopItem(realmItem.getId(), realmItem.getName(), new Date());
     }
 
-    @Override
     public Observable<ShopItem> newItem(String name) {
         final RealmShopItem realmShopItem = new RealmShopItem();
         realmShopItem.setName(name);
         return RealmObservable.object(context, r -> {
             return r.copyToRealm(realmShopItem);
         }).map(t -> shopItemFromRealm(realmShopItem));
+    }
+
+    public Observable<List<Category>> listCategories() {
+
+        return RealmObservable.results(context,
+                realmDb -> realmDb.where(RealmCategory.class).findAll())
+                .map(realmCategories -> {
+                    final List<Category> categories = new ArrayList<Category>(realmCategories.size());
+                    for (RealmCategory realmCategory : realmCategories) {
+                        categories.add(new Category(realmCategory.getId(), realmCategory.getName()));
+                    }
+                    return categories;
+                });
     }
 }

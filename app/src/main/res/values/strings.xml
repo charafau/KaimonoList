@@ -6,4 +6,17 @@
     <string name="shop_item_name_label">Item name</string>
     <string name="shop_item_add_button">Add</string>
     <string name="shop_add_item_toast">Added new item</string>
+    <string-array name="start_categories">
+        <item>Toiletry</item>
+        <item>Transport</item>
+        <item>Car</item>
+        <item>House</item>
+        <item>Eating out</item>
+        <item>Entertainment</item>
+        <item>Sports</item>
+        <item>Health</item>
+        <item>Communication</item>
+        <item>Food</item>
+        <item>Clothes</item>
+    </string-array>
 </resources>

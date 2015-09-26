@@ -3,7 +3,20 @@ package com.nullpointerbay.retrolist.model;
 
 public class Category {
 
-    String id;
+    final String id;
 
-    String name;
+    final String name;
+
+    public Category(String id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
 }

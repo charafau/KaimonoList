@@ -2,14 +2,16 @@ package com.nullpointerbay.retrolist;
 
 import android.app.Application;
 import android.content.Context;
-import android.util.Log;
 
 import com.nullpointerbay.retrolist.component.AppComponent;
 import com.nullpointerbay.retrolist.component.DaggerAppComponent;
+import com.nullpointerbay.retrolist.model.realm.RealmCategory;
 import com.nullpointerbay.retrolist.module.AppModule;
 
+import java.util.UUID;
+
 import io.realm.Realm;
-import io.realm.exceptions.RealmMigrationNeededException;
+import io.realm.RealmResults;
 
 
 public class MainApp extends Application {
@@ -24,15 +26,22 @@ public class MainApp extends Application {
     public void onCreate() {
         super.onCreate();
         setupGraph();
-//        configureDatabase();
+        configureDatabase();
     }
 
     private void configureDatabase() {
-        try {
-            Realm.getInstance(this);
-        } catch (RealmMigrationNeededException e) {
-            Log.i("Realm", "Migration of database needed. Executing...");
-            Realm.getInstance(this);
+        final Realm realm = Realm.getInstance(this);
+        final RealmResults<RealmCategory> all =
+                realm.where(RealmCategory.class).findAll();
+        if (all.size() < 1) {
+            final String[] startCategories = getResources().getStringArray(R.array.start_categories);
+            for (String category : startCategories) {
+                realm.beginTransaction();
+                final RealmCategory realmCategory = realm.createObject(RealmCategory.class);
+                realmCategory.setName(category);
+                realmCategory.setId(UUID.randomUUID().toString());
+                realm.commitTransaction();
+            }
         }
     }
 
