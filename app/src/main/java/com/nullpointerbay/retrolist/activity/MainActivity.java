@@ -8,7 +8,7 @@ import android.view.MenuItem;
 import com.nullpointerbay.retrolist.MainApp;
 import com.nullpointerbay.retrolist.R;
 import com.nullpointerbay.retrolist.component.AppComponent;
-import com.nullpointerbay.retrolist.fragment.ShopItemListFragment;
+import com.nullpointerbay.retrolist.fragment.ChartFragment;
 
 public class MainActivity extends BaseActivity {
 
@@ -22,7 +22,7 @@ public class MainActivity extends BaseActivity {
 
     private void instantiateFragment() {
         final FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.replace(R.id.layout_container, new ShopItemListFragment()).commit();
+        ft.replace(R.id.layout_container, new ChartFragment()).commit();
     }
 
     @Override

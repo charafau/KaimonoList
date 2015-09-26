@@ -1,13 +1,12 @@
 package com.nullpointerbay.retrolist.model;
 
 
-import io.realm.RealmObject;
-
-public class ShopItem extends RealmObject {
+public class ShopItem {
 
     private String id;
 
     private String name;
+
 
     public ShopItem() {
 
