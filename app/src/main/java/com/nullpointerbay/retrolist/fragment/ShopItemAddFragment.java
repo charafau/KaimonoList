@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
-import com.nullpointerbay.retrolist.MainApp;
 import com.nullpointerbay.retrolist.R;
 import com.nullpointerbay.retrolist.component.AppComponent;
 import com.nullpointerbay.retrolist.component.DaggerAddComponent;
@@ -35,7 +34,7 @@ public class ShopItemAddFragment extends BaseFragment implements ShopItemAddView
     }
 
     @Override
-    protected void setupComponent(AppComponent component, MainApp mainApp) {
+    protected void setupComponent(AppComponent component) {
         DaggerAddComponent.builder()
                 .appComponent(component)
                 .addModule(new AddModule(this))

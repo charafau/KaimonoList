@@ -13,8 +13,8 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setupComponent((AppComponent) MainApp.get(getActivity()).getComponent(), MainApp.get(getActivity()));
+        setupComponent((AppComponent) MainApp.get(getActivity()).getComponent());
     }
 
-    protected abstract void setupComponent(AppComponent component, MainApp mainApp);
+    protected abstract void setupComponent(AppComponent component);
 }
