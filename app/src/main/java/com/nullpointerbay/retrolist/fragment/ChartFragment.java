@@ -18,6 +18,7 @@ import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.nullpointerbay.retrolist.R;
+import com.nullpointerbay.retrolist.activity.ShopItemAddActivity;
 import com.nullpointerbay.retrolist.component.AppComponent;
 import com.nullpointerbay.retrolist.component.DaggerChartComponent;
 import com.nullpointerbay.retrolist.model.Category;
@@ -135,8 +136,7 @@ public class ChartFragment extends BaseFragment implements ChartView {
 
     @OnClick(R.id.fab)
     void onClickFabButton() {
-
-
+        presenter.startAddView();
     }
 
     @Override
@@ -160,6 +160,6 @@ public class ChartFragment extends BaseFragment implements ChartView {
 
     @Override
     public void startAddView() {
-
+        ShopItemAddActivity.start(getActivity());
     }
 }

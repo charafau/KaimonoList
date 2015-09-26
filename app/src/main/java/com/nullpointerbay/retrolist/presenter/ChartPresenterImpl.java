@@ -23,6 +23,8 @@ public class ChartPresenterImpl implements ChartPresenter {
 
     @Override
     public void onResume() {
+
+        compositeSubscription = new CompositeSubscription();
         final Subscription subscription = shopItemDao.listCategories().observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(categories -> chartView.setCategories(categories));
